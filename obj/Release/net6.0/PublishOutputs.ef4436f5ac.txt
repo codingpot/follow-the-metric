@@ -1,0 +1,7 @@
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\follow-the-metric.exe
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\follow-the-metric.dll
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\follow-the-metric.deps.json
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\follow-the-metric.runtimeconfig.json
+C:\Users\snowm\source\repos\follow-the-metric\follow-the-metric\obj\Release\net6.0\PubTmp\Out\follow-the-metric.pdb

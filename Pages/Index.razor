@@ -1,0 +1,101 @@
+﻿@page "/"
+
+@using follow_the_metric.Data
+@inject CurrencyRate currencyRate
+@inject Units units
+
+@code {
+    private double? leftCurrencyValue { get; set; }
+    private string? leftCurrencyKind { get; set; }
+    private double? rightCurrencyValue { get; set; }
+    private string? rightCurrencyKind { get; set; }
+    private double? leftUnitValue { get; set; }
+    private string? leftUnitKind { get; set; }
+    private double? rightUnitValue { get; set; }
+    private string? rightUnitKind { get; set; }
+    private string? selectedUnit { get; set; }
+
+    private void OnClick()
+    {
+        if (leftCurrencyKind == null || leftCurrencyValue == null || rightCurrencyKind == null || leftUnitKind == null || leftUnitValue == null || rightUnitKind == null || rightUnitValue == null || selectedUnit == null)
+        {
+            return;
+        }
+        var cRate = currencyRate.GetPair(leftCurrencyKind, rightCurrencyKind);
+        var uRate = units.GetPair(selectedUnit, leftUnitKind, rightUnitKind);
+        rightCurrencyValue = leftCurrencyValue * cRate / (uRate * leftUnitValue / rightUnitValue);
+    }
+
+    private string appendPNG(string s)
+    {
+        return s + ".png";
+    }
+}
+
+<PageTitle>Index</PageTitle>
+
+<div>
+    <h1>미터법을 따라주세요</h1>
+    도량형 선택
+    <select @bind="selectedUnit">
+        <option></option>
+        @foreach (var unitKind in units.units.Keys)
+        {
+            <option value="@unitKind">@unitKind</option>
+        }
+    </select>
+    <hr />
+    <div>
+        변환할 화폐 값
+        <input @bind="leftCurrencyValue"/>
+        변환할 화폐 종류
+        <select @bind="leftCurrencyKind">
+            <option></option>
+            @foreach (var currency in currencyRate.GetCurrencys())
+            {
+                <option value="@currency">@currency</option>
+            }
+        </select>
+        변환할 도량형 값
+        <input @bind="leftUnitValue"/>
+        변환할 도량형 종류
+        <select @bind="leftUnitKind">
+            @if (selectedUnit != null)
+            {
+                <option></option>
+                @foreach (var unit in units.units[selectedUnit].Keys)
+                {
+                    <option value="@unit">@unit</option>
+                }
+            }
+        </select>
+    </div>
+    <hr />
+    <button @onclick="OnClick">calculate</button>
+    <hr />
+    <div>
+        변환된 화폐 값
+        <p>@rightCurrencyValue</p>
+        변환될 화폐 종류
+        <select @bind="rightCurrencyKind">
+            <option></option>
+            @foreach (var currency in currencyRate.GetCurrencys())
+            {
+                <option value="@currency">@currency</option>
+            }
+        </select>
+        변환될 도량형 값
+        <input @bind="rightUnitValue"/>
+        변환될 도량형 종류
+        <select @bind="rightUnitKind">
+            @if (selectedUnit != null)
+            {
+                <option></option>
+                @foreach (var unit in units.units[selectedUnit].Keys)
+                {
+                    <option value="@unit">@unit</option>
+                }
+            }
+        </select>
+    </div>
+</div>
